@@ -1,8 +1,14 @@
+import { useDispatch } from "react-redux";
+import { ChangeToggleMenu } from "../utils/appSlice";
 const Header = () => {
+    const dispatch = useDispatch();
+    const toggleMenuIcon = () => {
+        dispatch(ChangeToggleMenu())
+    }
     return <div className="flex shadow-lg p-3">
         <div className="flex">
-            <img alt="menu" src="https://tse3.mm.bing.net/th?id=OIP.Au0_7mpqZMtQeoRL4iFkqAHaHa&pid=Api&P=0&h=180" className="h-10"/>
-            <img alt="yoytube-icon" src="https://tse3.mm.bing.net/th?id=OIP.dyCFJCFKwrC5V796-k9_BAHaHa&pid=Api&P=0&h=180" className="h-10"/>
+            <img alt="menu" onClick={toggleMenuIcon} src="https://tse3.mm.bing.net/th?id=OIP.Au0_7mpqZMtQeoRL4iFkqAHaHa&pid=Api&P=0&h=180" className="h-10 cursor-pointer"/>
+            <img alt="yoytube-icon" src="https://tse3.mm.bing.net/th?id=OIP.dyCFJCFKwrC5V796-k9_BAHaHa&pid=Api&P=0&h=180" className="h-10 cursor-pointer"/>
             <div className="pt-2 font-bold">Youtube</div>
         </div>
         <div className="flex px-60">

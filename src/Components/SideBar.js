@@ -1,4 +1,9 @@
+import { useSelector } from 'react-redux';
 const SideBar = () => {
+    const toggleMenuValue = useSelector(store=>store.app.toggleMenuValue);
+    
+    if(!toggleMenuValue) return;
+    
     return <div className="p-4 shadow-lg h-screen">
         <div>
             <img alt="home-icon" src="https://tse4.mm.bing.net/th?id=OIP.gUFOcWkBJqJzZ6xCyf3EswHaHM&pid=Api&P=0&h=180" className="h-8 w-8"/>
