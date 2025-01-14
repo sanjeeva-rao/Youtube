@@ -1,9 +1,9 @@
-import Body from "./Body";
+import { Outlet } from "react-router-dom";
 import SideBar from "./SideBar"
 const Main = () => {
     return <div className='flex'>
         <SideBar />
-        <Body />
+        <Outlet />
     </div>
 }
 
