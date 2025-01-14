@@ -2,7 +2,7 @@ import ButtonList from "./ButtonList";
 import MainContainer from "./MainContainer";
 
 const Body = () => {
-    return <div>
+    return <div className="p-6">
         <ButtonList />
         <MainContainer />
     </div>
