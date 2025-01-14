@@ -9,7 +9,7 @@ const Header = () => {
         <div className="flex">
             <img alt="menu" onClick={toggleMenuIcon} src="https://tse3.mm.bing.net/th?id=OIP.Au0_7mpqZMtQeoRL4iFkqAHaHa&pid=Api&P=0&h=180" className="h-10 cursor-pointer"/>
             <img alt="yoytube-icon" src="https://tse3.mm.bing.net/th?id=OIP.dyCFJCFKwrC5V796-k9_BAHaHa&pid=Api&P=0&h=180" className="h-10 cursor-pointer"/>
-            <div className="pt-2 font-bold">Youtube</div>
+            <div className="pt-1 font-bold text-xl">YouTube</div>
         </div>
         <div className="flex px-60">
             <input type="text" placeholder="Search" className="rounded-l-full w-[500px] border border-gray-500 px-4"/>
