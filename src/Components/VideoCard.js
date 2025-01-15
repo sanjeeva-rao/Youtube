@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const VideoCard = ({data}) => {
     const {snippet, statistics} = data;
     
-    return <div className="p-2 m-2 w-60 h-72">
+    return <div className="p-2 m-2 w-52 h-72">
            <Link to={"/watch/"+data.id}>
                 <img alt="thubnail"src={snippet.thumbnails.medium.url} />
                 <div className="font-bold">{snippet.title}</div>
