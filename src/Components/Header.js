@@ -2,17 +2,25 @@ import { useDispatch } from "react-redux";
 import { ChangeToggleMenu } from "../utils/appSlice";
 import { useState, useEffect } from "react";
 import { youtube_search_api } from "../utils/constants";
+import { addSuggestionsToCache } from "../utils/SearchSuggestions";
+import { useSelector } from "react-redux";
 const Header = () => {
     const [showSearchItems, setShowSearchItems] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [serachItemsArray, setSearchItemsArray] = useState([]);
+    const searchCache = useSelector(store => store.searchCache)
     const dispatch = useDispatch();
     const toggleMenuIcon = () => {
         dispatch(ChangeToggleMenu())
     }
     useEffect(()=>{
         const timer = setTimeout(()=>{
-            getSearchQuesries();
+            if(searchCache[searchQuery] === undefined) {
+                getSearchQuesries();
+            }
+            else{
+                setSearchItemsArray(searchCache[searchQuery])
+            }
         },200)
 
         return () => {
@@ -24,6 +32,7 @@ const Header = () => {
         const data = await fetch(youtube_search_api+searchQuery)
         const json = await data.json();
         setSearchItemsArray(json[1]);
+        dispatch(addSuggestionsToCache({[searchQuery]: json[1]}));   
     }
 
     const searchQueyChanged = (searchValue) => { 
