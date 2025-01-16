@@ -11,7 +11,13 @@ const Header = () => {
         dispatch(ChangeToggleMenu())
     }
     useEffect(()=>{
-        getSearchQuesries();
+        const timer = setTimeout(()=>{
+            getSearchQuesries();
+        },200)
+
+        return () => {
+            clearTimeout(timer)
+        }
     }, [searchQuery])
 
     const getSearchQuesries = async() => {

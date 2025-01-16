@@ -10,12 +10,9 @@ const Watch = () => {
             selectedVideoDetails = video;
         }
     })
-    console.log(selectedVideoDetails, "selectedVideoDetails");
     
     
-
-    
-    return <div className="p-4 w-[650px]">
+    return <div className="py-4 pl-36 w-[650px]">
         <iframe width="650" height="350" 
         src={"https://www.youtube.com/embed/"+videoId+"?si=h-BWsGU3ExvC-ZC9" }
         title="YouTube video player" 
