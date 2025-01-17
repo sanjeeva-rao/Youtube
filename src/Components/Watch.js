@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
+import Comments from "./Comments";
 const Watch = () => {
     const videoId = useParams().videoId;
     const VideoDetails = useSelector(store => store.popularVideos.videos);
@@ -21,6 +22,7 @@ const Watch = () => {
         referrerPolicy="strict-origin-when-cross-origin" 
         allowFullScreen></iframe>
         <div className="font-bold py-4">{selectedVideoDetails.snippet.title}</div>
+        <Comments />
     </div>
 }
 export default Watch;
