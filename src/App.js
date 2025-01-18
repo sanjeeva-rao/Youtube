@@ -2,18 +2,26 @@ import './App.css';
 import Header from './Components/Header';
 import { Provider } from 'react-redux';
 import appStore from './utils/store';
-import Main from './Components/Main';
-import Body from "./Components/Body"
+import Main from "./Components/Main";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Watch from './Components/Watch';
+import Body from './Components/Body';
+import Watch from "./Components/Watch"
+
+const RouterApp = () => {
+  return <div>
+    <Header />
+    <Main />
+  </div>
+}
+
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <Main />,
+    element: <RouterApp />,
     children: [
       {
         path: "/",
-       element: <Body/>,
+        element: <Body />
       },
       {
         path: "/watch/:videoId",
@@ -21,15 +29,14 @@ const appRouter = createBrowserRouter([
       }
     ]
   }
-  
 ])
+
 function App() {
   
   return (
     <Provider store={appStore}>
       <div>
-        <Header />
-        <RouterProvider router={appRouter} />
+        <RouterProvider router={appRouter}/>
       </div>
     </Provider>
   );
