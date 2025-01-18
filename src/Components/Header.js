@@ -4,12 +4,14 @@ import { useState, useEffect } from "react";
 import { youtube_search_api } from "../utils/constants";
 import { addSuggestionsToCache } from "../utils/SearchSuggestions";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const Header = () => {
     const [showSearchItems, setShowSearchItems] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [serachItemsArray, setSearchItemsArray] = useState([]);
     const searchCache = useSelector(store => store.searchCache)
     const dispatch = useDispatch();
+    const navigate = useNavigate()
     const toggleMenuIcon = () => {
         dispatch(ChangeToggleMenu())
     }
@@ -38,6 +40,14 @@ const Header = () => {
     const searchQueyChanged = (searchValue) => { 
         setSearchQuery(searchValue);
     }
+
+    const navigateToSearch = (search) => {
+        navigate("/results/"+search);
+        setShowSearchItems(false);
+        console.log(search, "search");
+        
+    }
+
     return <div className="flex shadow-lg p-3 fixed bg-white">
         <div className="flex">
             <img alt="menu" onClick={toggleMenuIcon} src="https://tse3.mm.bing.net/th?id=OIP.Au0_7mpqZMtQeoRL4iFkqAHaHa&pid=Api&P=0&h=180" className="h-10 cursor-pointer"/>
@@ -46,7 +56,7 @@ const Header = () => {
         </div>
         <div className="px-60">
             <div className="flex">
-                <input type="text" placeholder="Search" className="rounded-l-full w-[500px] border border-gray-500 px-4" value={searchQuery} onChange={(e)=>searchQueyChanged(e.target.value)} onFocus={()=>{setShowSearchItems(true)}} onBlur={()=>{setShowSearchItems(false)}}/>
+                <input type="text" placeholder="Search" className="rounded-l-full w-[500px] border border-gray-500 px-4" value={searchQuery} onChange={(e)=>searchQueyChanged(e.target.value)} onFocus={()=>{setShowSearchItems(true)}}/>
                 <div className="border border-gray-500 rounded-r-full">
                     <img alt="search" src="https://tse3.mm.bing.net/th?id=OIP.RF8hdNm5eOnLDpG_GSu5NwHaHN&pid=Api&P=0&h=180" className="h-8 px-4 py-1"/>
                 </div>
@@ -55,7 +65,7 @@ const Header = () => {
            
             showSearchItems && serachItemsArray.length > 0 && <div className="fixed bg-white border border-gray-300 rounded-lg w-[500px] p-4 m-1">
                     {
-                        serachItemsArray.map(search=><div key={search}>{search}</div>)
+                        serachItemsArray.map(search=><div className="hover:bg-gray-300 hover: px-2 hover: rounded-lg cursor-pointer" key={search} onClick={()=>{navigateToSearch(search)}}>{search}</div>)
                     }
             </div>
            }

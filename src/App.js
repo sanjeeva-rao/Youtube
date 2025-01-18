@@ -6,6 +6,7 @@ import Main from "./Components/Main";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Body from './Components/Body';
 import Watch from "./Components/Watch"
+import SearchResults from './Components/SearchResults';
 
 const RouterApp = () => {
   return <div>
@@ -26,6 +27,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/watch/:videoId",
         element: <Watch />
+      },
+      {
+        path: "/results/:resQuery",
+        element: <SearchResults />
       }
     ]
   }

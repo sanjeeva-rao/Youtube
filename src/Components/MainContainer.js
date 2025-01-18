@@ -19,7 +19,7 @@ const MainContainer = () => {
         dispatch(addPopularVideos(json.items));
     }
 
-    if(videoList.length === 0) return null;
+    if(!videoList) return null;
     return <div className="flex flex-wrap">
         
         {
