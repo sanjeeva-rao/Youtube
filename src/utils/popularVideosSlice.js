@@ -3,14 +3,13 @@ import { createSlice } from "@reduxjs/toolkit";
 const popularVideosSlice = createSlice({
     name: "Popular Videos",
     initialState: {
-        videos: null
     },
     reducers: {
-        addPopularVideos: (state, action)=>{
-            state.videos = action.payload
-        }
+        addWatchVideos: (state, action)=>{
+            state = Object.assign(state, action.payload)
+        },
     }
 })
 
 export default popularVideosSlice.reducer;
-export const {addPopularVideos} = popularVideosSlice.actions
+export const {addWatchVideos} = popularVideosSlice.actions
