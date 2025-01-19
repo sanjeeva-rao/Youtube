@@ -9,7 +9,7 @@ const VideoBackground = ({title, videoId}) => {
         referrerPolicy="strict-origin-when-cross-origin" 
         allowFullScreen></iframe>
         <div className="font-bold py-4">{title}</div>
-        <Comments />
+        <Comments id={videoId}/>
     </div>
 }
 export default VideoBackground;

@@ -5,6 +5,7 @@ const CommentList = ({data}) => {
             <div className="pl-4">
                 <h1 className="font-bold">@{data.name}</h1>
                 <p>{data.text}</p>
+                <button className="text-sm text-blue-700 mt-2 hover:bg-blue-300 hover:py-1 hover:px-2 hover:rounded" >Reply</button>
                 {
                     data.replies && data.replies.map((data, index) => <CommentList data = {data} key={index} />)
                 }

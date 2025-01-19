@@ -1,20 +1,32 @@
 import CommentList from "./CommentList";
 import { useState } from "react";
-const Comments = () => {
+import { useDispatch } from "react-redux";
+import { addCommentsToSlice } from "../utils/commentsSlice";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+const Comments = ({id}) => {
     const [commentText, setCommentText] = useState("");
-    const [CommentsData, setCommentsData] = useState([{
-        name: "Sai Ram",
-        text: "amazing! very good"
-    }]);
-    
+    const dispatch = useDispatch();
+    const commentsDataFromStore = useSelector(store => store.comments);
+    const [CommentsData, setCommentsData] = useState([]);
+    useEffect(()=>{
+        setCommentsData(commentsDataFromStore[id])
+    }, [])
     const addComments = () => {    
-        setCommentsData([
-            ...CommentsData,{
-                name: "user",
-                text: commentText
-            }
-        ]);
-        
+        var tempData;
+        if(commentsDataFromStore[id]) {
+            tempData = [...commentsDataFromStore[id], {name: "user", text: commentText}]
+        }
+        else{
+            tempData = [
+                {
+                    name: "user",
+                    text: commentText
+                }
+            ]   
+        }
+        dispatch(addCommentsToSlice({[id]:tempData}));
+        setCommentsData(tempData)
     }
 
     return <div>
@@ -23,7 +35,7 @@ const Comments = () => {
         <button className="bg-slate-200 py-2 px-4 rounded-lg m-2" onClick={addComments} >Add</button>
         <button className="bg-slate-200 py-2 px-4 rounded-lg">Cancel</button>
         {
-            CommentsData.map((data, index) => {
+            CommentsData && CommentsData.map((data, index) => {
                 return <CommentList data = {data} key={index} />
                 
             })
